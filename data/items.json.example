@@ -1,0 +1,14 @@
+[
+    {
+      "title": "Example Page 1",
+      "description": "This is the description for page 1.",
+      "url": "https://example.com",
+      "requiresVpn": true
+    },
+    {
+      "title": "Example Page 2",
+      "description": "This is the description for page 2.",
+      "url": "https://example.com",
+      "requiresVpn": false
+    }
+  ]
