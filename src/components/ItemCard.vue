@@ -41,7 +41,7 @@ defineProps<{
 const openLink = (item: Item) => {
   switch (item.type) {
     case "url":
-      window.open(item.url, "_blank");
+      window.location.href = item.url;
       break;
     case "telegram":
       window.open(`https://t.me/${item.url}`, "_blank");
