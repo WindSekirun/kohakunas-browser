@@ -7,6 +7,10 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    ArrowView: typeof import('./src/components/ArrowView.vue')['default']
+    DividerView: typeof import('./src/components/DividerView.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    ItemCard: typeof import('./src/components/ItemCard.vue')['default']
+    ItemGroup: typeof import('./src/components/ItemGroup.vue')['default']
   }
 }

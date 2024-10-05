@@ -1,57 +1,52 @@
 <template>
   <v-app :dark="true">
     <v-container>
-      <v-row class="d-flex align-center justify-center" style="height: 400px">
-        <span class="text-h2 font-weight-bold">KohakuNas</span>
+      <v-row class="align-center justify-center" style="margin-top: 175px">
+        <v-avatar size="52px">
+          <v-img
+            alt="Avatar"
+            src="../assets/android-chrome-192x192.png"
+            variant="elevated"
+          ></v-img>
+        </v-avatar>
+        <span class="ms-2 text-h2 font-weight-bold">KohakuNas</span>
+      </v-row>
+      <v-row class="align-center justify-center" style="margin-bottom: 100px">
+        <span class="text-h6">by @WindSekirun</span>
       </v-row>
 
-      <svg class="arrows" @click="routeToList()">
-        <path class="a1" d="M0 0 L30 32 L60 0"></path>
-        <path class="a2" d="M0 20 L30 52 L60 20"></path>
-        <path class="a3" d="M0 40 L30 72 L60 40"></path>
-      </svg>
+      <ArrowView @click="routeToList()" />
 
-      <v-row>
-        <v-col
-          v-for="(item, index) in items"
-          :key="index"
-          cols="12"
-          sm="6"
-          xs="12"
-          lg="4"
-        >
-          <v-card class="mx-auto" outlined :id="index">
-            <v-card-title>{{ item.title }}</v-card-title>
-            <v-card-subtitle>{{ item.description }}</v-card-subtitle>
+      <DividerView title="Services" />
 
-            <v-card-actions>
-              <v-btn @click="openLink(item.url)" icon>
-                <v-icon>mdi-open-in-new</v-icon>
-              </v-btn>
-              <v-icon v-if="item.requiresVpn" class="ml-auto"> mdi-vpn </v-icon>
-            </v-card-actions>
-          </v-card>
-        </v-col>
-      </v-row>
+      <ItemGroup :list="urlList" v-slot="{ item, index }">
+        <ItemCard :item="item" :index="index"></ItemCard>
+      </ItemGroup>
+
+      <DividerView title="Telegram" />
+
+      <ItemGroup :list="telegramList" v-slot="{ item, index }">
+        <ItemCard :item="item" :index="index"></ItemCard>
+      </ItemGroup>
+
+      <div style="height: 200px"></div>
     </v-container>
   </v-app>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-
-interface Item {
-  title: string;
-  description: string;
-  url: string;
-  requiresVpn: boolean;
-}
+import { ref, onMounted, computed } from "vue";
+import { Item } from "../model/Item";
 
 const items = ref<Item[]>([]);
 
-const openLink = (url: string) => {
-  window.open(url, "_blank");
-};
+const urlList = computed(() => {
+  return items.value.filter((element) => element.type == "url").sort((a, b) => a.title.localeCompare(b.title));
+});
+
+const telegramList = computed(() => {
+  return items.value.filter((element) => element.type == "telegram").sort((a, b) => a.title.localeCompare(b.title));
+});
 
 const routeToList = () => {
   window.location.hash = (items.value.length / 2).toString();
@@ -74,67 +69,5 @@ onMounted(async () => {
 <style>
 html {
   scroll-behavior: smooth;
-}
-
-.arrows {
-  width: 60px;
-  height: 72px;
-  position: relative;
-  left: 50%;
-  margin-left: -30px;
-  bottom: 20px;
-}
-
-.arrows path {
-  stroke: #666666;
-  fill: transparent;
-  stroke-width: 1px;
-  animation: arrow 2s infinite;
-  -webkit-animation: arrow 2s infinite;
-}
-
-@keyframes arrow {
-  0% {
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@-webkit-keyframes arrow /*Safari and Chrome*/ {
-  0% {
-    opacity: 0;
-  }
-  40% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-.arrows path.a1 {
-  animation-delay: -1s;
-  -webkit-animation-delay: -1s; /* Safari 和 Chrome */
-}
-
-.arrows path.a2 {
-  animation-delay: -0.5s;
-  -webkit-animation-delay: -0.5s; /* Safari 和 Chrome */
-}
-
-.arrows path.a3 {
-  animation-delay: 0s;
-  -webkit-animation-delay: 0s; /* Safari 和 Chrome */
 }
 </style>
