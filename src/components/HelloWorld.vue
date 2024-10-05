@@ -11,7 +11,10 @@
         </v-avatar>
         <span class="ms-2 text-h2 font-weight-bold title-text">KohakuNas</span>
       </v-row>
-      <v-row class="align-center justify-center title-text" style="margin-bottom: 80px">
+      <v-row
+        class="align-center justify-center title-text"
+        style="margin-bottom: 80px"
+      >
         <span class="text-h6">by @WindSekirun</span>
       </v-row>
 
@@ -30,7 +33,17 @@
       </ItemGroup>
 
       <DividerView title="Spec" />
-      
+      <div class="" v-if="spec">
+        <SpecElement label="cpu" :spec="spec" />
+        <SpecElement label="ram" :spec="spec" />
+        <SpecElement label="model" :spec="spec" />
+        <SpecElement label="gpu" :spec="spec" />
+        <SpecElement label="disk0" :spec="spec" />
+        <SpecElement label="disk1" :spec="spec" />
+        <SpecElement label="os" :spec="spec" />
+        <SpecElement label="internet" :spec="spec" />
+      </div>
+
       <div style="height: 200px"></div>
     </v-container>
   </v-app>
@@ -67,11 +80,10 @@ onMounted(async () => {
       items.value = await itemResponse.json();
     }
 
-    const specResponse = await fetch("/data/items.json");
+    const specResponse = await fetch("/data/spec.json");
     if (specResponse.ok) {
       spec.value = await specResponse.json();
     }
-    
   } catch (error) {
     console.error("Error fetching data:", error);
   }
