@@ -1,7 +1,7 @@
 <template>
   <v-app :dark="true">
     <v-container color="#3B4252">
-      <v-row class="align-center justify-center" style="margin-top: 175px">
+      <v-row class="align-center justify-center" style="margin-top: 125px">
         <v-avatar size="52px">
           <v-img
             alt="Avatar"
@@ -11,7 +11,7 @@
         </v-avatar>
         <span class="ms-2 text-h2 font-weight-bold title-text">KohakuNas</span>
       </v-row>
-      <v-row class="align-center justify-center title-text" style="margin-bottom: 100px">
+      <v-row class="align-center justify-center title-text" style="margin-bottom: 80px">
         <span class="text-h6">by @WindSekirun</span>
       </v-row>
 
@@ -53,7 +53,7 @@ const telegramList = computed(() => {
 });
 
 const routeToList = () => {
-  window.location.hash = (items.value.length / 2).toString();
+  window.location.hash = (items.value.length / 3).toString();
 };
 
 onMounted(async () => {
