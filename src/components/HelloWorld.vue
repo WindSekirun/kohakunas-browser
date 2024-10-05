@@ -1,6 +1,6 @@
 <template>
   <v-app :dark="true">
-    <v-container>
+    <v-container color="#3B4252">
       <v-row class="align-center justify-center" style="margin-top: 175px">
         <v-avatar size="52px">
           <v-img
@@ -9,9 +9,9 @@
             variant="elevated"
           ></v-img>
         </v-avatar>
-        <span class="ms-2 text-h2 font-weight-bold">KohakuNas</span>
+        <span class="ms-2 text-h2 font-weight-bold title-text">KohakuNas</span>
       </v-row>
-      <v-row class="align-center justify-center" style="margin-bottom: 100px">
+      <v-row class="align-center justify-center title-text" style="margin-bottom: 100px">
         <span class="text-h6">by @WindSekirun</span>
       </v-row>
 
@@ -41,11 +41,15 @@ import { Item } from "../model/Item";
 const items = ref<Item[]>([]);
 
 const urlList = computed(() => {
-  return items.value.filter((element) => element.type == "url").sort((a, b) => a.title.localeCompare(b.title));
+  return items.value
+    .filter((element) => element.type == "url")
+    .sort((a, b) => a.title.localeCompare(b.title));
 });
 
 const telegramList = computed(() => {
-  return items.value.filter((element) => element.type == "telegram").sort((a, b) => a.title.localeCompare(b.title));
+  return items.value
+    .filter((element) => element.type == "telegram")
+    .sort((a, b) => a.title.localeCompare(b.title));
 });
 
 const routeToList = () => {
@@ -69,5 +73,8 @@ onMounted(async () => {
 <style>
 html {
   scroll-behavior: smooth;
+}
+.title-text {
+  color: #d8dee9;
 }
 </style>

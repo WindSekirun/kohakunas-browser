@@ -6,7 +6,7 @@
       :subtitle="item.description"
     >
       <template v-slot:title>
-        <span class="font-weight-bold text-h5">
+        <span class="font-weight-bold text-h5 title-text">
           {{ item.title }}
         </span>
       </template>
@@ -49,3 +49,9 @@ const openLink = (item: Item) => {
   }
 };
 </script>
+
+<style lang="css" scoped>
+.title-text {
+  color: #D8DEE9;
+}
+</style>
