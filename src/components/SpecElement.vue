@@ -21,7 +21,8 @@ const uppercaseLabel = computed(() => {
 });
 
 const value = computed(() => {
-  return props.spec[props.label];
+  const label = props.label as keyof Spec;
+  return props.spec[label];
 });
 </script>
 
