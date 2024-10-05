@@ -31,8 +31,9 @@
 
 <script setup lang="ts">
 import { defineProps } from "vue";
+import { Item } from "../model/Item";
 
-const props = defineProps<{
+defineProps<{
   item: Item;
   index: number;
 }>();
