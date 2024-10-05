@@ -1,0 +1,8 @@
+{
+    "cpu": "CPU",
+    "gpu": "GPU",
+    "ram": "RAM",
+    "disk0": "SSD",
+    "disk1": "HDD",
+    "internet": "INTERNET"
+}

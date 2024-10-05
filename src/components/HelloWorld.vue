@@ -29,6 +29,8 @@
         <ItemCard :item="item" :index="index"></ItemCard>
       </ItemGroup>
 
+      <DividerView title="Spec" />
+      
       <div style="height: 200px"></div>
     </v-container>
   </v-app>
@@ -37,8 +39,10 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 import { Item } from "../model/Item";
+import { Spec } from "../model/Spec";
 
 const items = ref<Item[]>([]);
+const spec = ref<Spec>();
 
 const urlList = computed(() => {
   return items.value
@@ -58,12 +62,16 @@ const routeToList = () => {
 
 onMounted(async () => {
   try {
-    const response = await fetch("/data/items.json");
-    if (response.ok) {
-      items.value = await response.json();
-    } else {
-      console.error("Failed to fetch data");
+    const itemResponse = await fetch("/data/items.json");
+    if (itemResponse.ok) {
+      items.value = await itemResponse.json();
     }
+
+    const specResponse = await fetch("/data/items.json");
+    if (specResponse.ok) {
+      spec.value = await specResponse.json();
+    }
+    
   } catch (error) {
     console.error("Error fetching data:", error);
   }
