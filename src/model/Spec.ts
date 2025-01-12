@@ -5,4 +5,6 @@ export interface Spec {
     disk0: string
     disk1: string
     internet: string
+    os: string
+    model: string
 }

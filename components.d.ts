@@ -12,5 +12,6 @@ declare module 'vue' {
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     ItemCard: typeof import('./src/components/ItemCard.vue')['default']
     ItemGroup: typeof import('./src/components/ItemGroup.vue')['default']
+    SpecElement: typeof import('./src/components/SpecElement.vue')['default']
   }
 }
