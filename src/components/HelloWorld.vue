@@ -2,10 +2,10 @@
   <v-app :dark="true">
     <v-container color="#3B4252">
       <v-row class="align-center justify-center" style="margin-top: 125px">
-        <v-avatar size="52px">
+        <v-avatar size="64px">
           <v-img
             alt="Avatar"
-            src="../assets/android-chrome-192x192.png"
+            src="../assets/web-app-manifest-192x192.png"
             variant="elevated"
           ></v-img>
         </v-avatar>
